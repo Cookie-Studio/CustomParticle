@@ -1,0 +1,5 @@
+name: CustomParticle
+main: cn.cookiestudio.customparticle.PluginMain
+version: "1.0.0"
+author: smart_cmd
+api: ["1.0.11"]
