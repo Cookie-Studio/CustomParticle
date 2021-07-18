@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.script.ScriptEngineManager;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,10 +35,10 @@ public class JavaScriptCustomParticle extends CustomParticle{
     }
 
     @Override
-    public Position[] apply(Long tick, Position pos) {
-        Position[] returnValue = null;
+    public List<Position> apply(Long tick, Position pos) {
+        List<Position> returnValue = null;
         try {
-            returnValue = (Position[]) scriptEngine.invokeFunction("apply", tick, pos);
+            returnValue = (List<Position>) scriptEngine.invokeFunction("apply", tick, pos);
         }catch(Exception e){
             throw new RuntimeException("catch an exception when running script " + scriptPath,e);
         }
