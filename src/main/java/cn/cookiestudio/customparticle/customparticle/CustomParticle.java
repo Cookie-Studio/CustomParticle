@@ -5,8 +5,6 @@ import cn.nukkit.Server;
 import cn.nukkit.level.ParticleEffect;
 import cn.nukkit.level.Position;
 import cn.nukkit.scheduler.PluginTask;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 
