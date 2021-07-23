@@ -21,7 +21,15 @@ public class CustomParticleCommand extends Command {
             return true;
         if (str[0].equals("play")) {
             Identifier identifier = Identifier.fromString(str[1]);
-            PluginMain.getInstance().getCustomParticlePool().get(identifier).play((Position)commandSender, true);
+            if (str.length <= 2){
+                PluginMain.getInstance().getCustomParticlePool().get(identifier).play((Position)commandSender, true);
+            }else{
+                if (str[2].equals("false")){
+                    PluginMain.getInstance().getCustomParticlePool().get(identifier).play((Position)commandSender, false);
+                }else if (str[2].equals("true")){
+                    PluginMain.getInstance().getCustomParticlePool().get(identifier).play((Position)commandSender, true);
+                }
+            }
             return true;
         }else if (str[0].equals("reload")) {
             PluginMain.getInstance().reloadParticle();

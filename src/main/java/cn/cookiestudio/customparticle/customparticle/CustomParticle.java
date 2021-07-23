@@ -6,11 +6,10 @@ import cn.nukkit.level.ParticleEffect;
 import cn.nukkit.level.Position;
 import cn.nukkit.scheduler.PluginTask;
 import java.util.List;
+import java.util.Map;
 import java.util.function.BiFunction;
 
-public abstract class CustomParticle implements BiFunction<Long,Position, List<Position>> {
-    abstract ParticleEffect getEffect();
-    abstract void setEffect(ParticleEffect particleEffect);
+public abstract class CustomParticle implements BiFunction<Long,Position, Map<ParticleEffect,List<Position>>> {
     public void play(Position pos,boolean follow){
         Server.getInstance().getScheduler().scheduleRepeatingTask(PluginMain.getInstance(),new ParticlePlayTask(pos,follow),1);
     }
@@ -18,7 +17,7 @@ public abstract class CustomParticle implements BiFunction<Long,Position, List<P
     public class ParticlePlayTask extends PluginTask {
 
         private Position pos;
-        private List<Position> particlePos;
+        private Map<ParticleEffect,List<Position>> particlePos;
         private Position startPos;
         private boolean follow;
         private long tick = 1;
@@ -34,14 +33,14 @@ public abstract class CustomParticle implements BiFunction<Long,Position, List<P
         public void onRun(int i) {
             if (follow){
                 if ((particlePos = apply(tick,pos)) != null){
-                    particlePos.forEach(p -> startPos.level.addParticleEffect(p,getEffect()));
+                    particlePos.forEach((e,l) -> l.forEach(p -> p.getLevel().addParticleEffect(p,e)));
                     tick++;
                     return;
                 }
                 this.cancel();
             }else{
                 if ((particlePos = apply(tick,startPos)) != null){
-                    particlePos.forEach(p -> startPos.level.addParticleEffect(p,getEffect()));
+                    particlePos.forEach((e,l) -> l.forEach(p -> p.getLevel().addParticleEffect(p,e)));
                     tick++;
                     return;
                 }

@@ -10,6 +10,7 @@ import javax.script.ScriptEngineManager;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -18,7 +19,6 @@ public class JavaScriptCustomParticle extends CustomParticle{
     private Path scriptPath;
     private ScriptEngineManager scriptEngineManager;
     private NashornScriptEngine scriptEngine;
-    private ParticleEffect effect = ParticleEffect.LAVA_PARTICLE;
 
     public JavaScriptCustomParticle(Path scriptPath){
         this.scriptPath = scriptPath;
@@ -35,10 +35,10 @@ public class JavaScriptCustomParticle extends CustomParticle{
     }
 
     @Override
-    public List<Position> apply(Long tick, Position pos) {
-        List<Position> returnValue = null;
+    public Map<ParticleEffect,List<Position>> apply(Long tick, Position pos) {
+        Map<ParticleEffect,List<Position>> returnValue = null;
         try {
-            returnValue = (List<Position>) scriptEngine.invokeFunction("apply", tick, pos);
+            returnValue = (Map<ParticleEffect,List<Position>>) scriptEngine.invokeFunction("apply", tick, pos);
         }catch(Exception e){
             throw new RuntimeException("catch an exception when running script " + scriptPath,e);
         }
