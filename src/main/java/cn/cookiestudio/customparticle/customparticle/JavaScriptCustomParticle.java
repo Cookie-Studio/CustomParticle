@@ -1,6 +1,6 @@
 package cn.cookiestudio.customparticle.customparticle;
 
-import cn.cookiestudio.customparticle.util.PosUtil;
+import cn.cookiestudio.customparticle.math.MathUtil;
 import cn.nukkit.level.ParticleEffect;
 import cn.nukkit.level.Position;
 import jdk.nashorn.api.scripting.NashornScriptEngine;
@@ -24,7 +24,7 @@ public class JavaScriptCustomParticle extends CustomParticle{
         this.scriptPath = scriptPath;
         scriptEngineManager = new ScriptEngineManager();
         scriptEngine = (NashornScriptEngine) scriptEngineManager.getEngineByName("nashorn");
-        scriptEngine.put("posUtil",new PosUtil());
+        scriptEngine.put("mathUtil", MathUtil.getInstance());
         scriptEngine.put("particleEffect", ParticleEffect.values());
         scriptEngine.put("particle",this);
         try {
