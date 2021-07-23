@@ -27,6 +27,11 @@ public class CustomParticleCommand extends Command {
             PluginMain.getInstance().reloadParticle();
         }else if (str[0].equals("clear")) {
             Server.getInstance().getScheduler().cancelTask(PluginMain.getInstance());
+        }else if (str[0].equals("list")) {
+            commandSender.sendMessage("§eParticle List:");
+            PluginMain.getInstance().getCustomParticlePool().getCustomParticlePool().forEach((id,p) -> {
+                commandSender.sendMessage("ID: §a" + id);
+            });
         }
         return true;
     }

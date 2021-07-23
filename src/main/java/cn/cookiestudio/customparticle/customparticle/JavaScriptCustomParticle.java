@@ -18,14 +18,14 @@ public class JavaScriptCustomParticle extends CustomParticle{
     private Path scriptPath;
     private ScriptEngineManager scriptEngineManager;
     private NashornScriptEngine scriptEngine;
-    private ParticleEffect particleEffect = ParticleEffect.LAVA_PARTICLE;
+    private ParticleEffect effect = ParticleEffect.LAVA_PARTICLE;
 
     public JavaScriptCustomParticle(Path scriptPath){
         this.scriptPath = scriptPath;
         scriptEngineManager = new ScriptEngineManager();
         scriptEngine = (NashornScriptEngine) scriptEngineManager.getEngineByName("nashorn");
-        scriptEngine.put("mathUtil", MathUtil.getInstance());
-        scriptEngine.put("particleEffect", ParticleEffect.values());
+        scriptEngine.put("math", MathUtil.getInstance());
+        scriptEngine.put("effect", ParticleEffect.values());
         scriptEngine.put("particle",this);
         try {
             scriptEngine.eval(Files.newBufferedReader(scriptPath));

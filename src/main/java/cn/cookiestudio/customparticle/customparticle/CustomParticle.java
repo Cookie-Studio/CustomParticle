@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.function.BiFunction;
 
 public abstract class CustomParticle implements BiFunction<Long,Position, List<Position>> {
-    abstract ParticleEffect getParticleEffect();
-    abstract void setParticleEffect(ParticleEffect particleEffect);
+    abstract ParticleEffect getEffect();
+    abstract void setEffect(ParticleEffect particleEffect);
     public void play(Position pos,boolean follow){
         Server.getInstance().getScheduler().scheduleRepeatingTask(PluginMain.getInstance(),new ParticlePlayTask(pos,follow),1);
     }
@@ -34,14 +34,14 @@ public abstract class CustomParticle implements BiFunction<Long,Position, List<P
         public void onRun(int i) {
             if (follow){
                 if ((particlePos = apply(tick,pos)) != null){
-                    particlePos.forEach(p -> startPos.level.addParticleEffect(p,getParticleEffect()));
+                    particlePos.forEach(p -> startPos.level.addParticleEffect(p,getEffect()));
                     tick++;
                     return;
                 }
                 this.cancel();
             }else{
                 if ((particlePos = apply(tick,startPos)) != null){
-                    particlePos.forEach(p -> startPos.level.addParticleEffect(p,getParticleEffect()));
+                    particlePos.forEach(p -> startPos.level.addParticleEffect(p,getEffect()));
                     tick++;
                     return;
                 }

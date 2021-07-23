@@ -39,8 +39,8 @@ public class BVector3 {
         return this;
     }
 
-    public BVector3 changePos(Vector3 pos){
-        this.pos = pos;
+    public BVector3 changePos(double x,double y,double z){
+        this.pos = this.pos.add(x,y,z);
         updateAngle();
         return this;
     }
@@ -54,6 +54,7 @@ public class BVector3 {
         double projectEdge = MathUtil.getInstance().cos(yAxisAngle) * length;
         double x = MathUtil.getInstance().cos(xzAxisAngle) * projectEdge;
         double z = MathUtil.getInstance().sin(xzAxisAngle) * projectEdge;
+        this.pos = new Vector3(x,y,z);
     }
 
     private void updateAngle(){
