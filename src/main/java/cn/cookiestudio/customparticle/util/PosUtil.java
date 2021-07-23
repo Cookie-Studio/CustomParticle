@@ -6,7 +6,7 @@ import lombok.Setter;
 
 public class PosUtil {
     public Position spin(Position circle,double length,double xzAxisAngle,double yAxisAngle){
-        if (yAxisAngle > 190 || yAxisAngle < -90)
+        if (yAxisAngle > 90 || yAxisAngle < -90)
             throw new IllegalArgumentException("y-axis angle degree cannot bigger than 90 or smaller than -90");
         double changeY = sin(yAxisAngle) * length;
         double projectEdge = cos(yAxisAngle) * length;
