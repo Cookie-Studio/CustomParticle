@@ -1,5 +1,6 @@
 package cn.cookiestudio.customparticle.math;
 
+import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
 import lombok.Getter;
 
@@ -50,5 +51,13 @@ public class MathUtil {
 
     public BVector3 newVector3(Vector3 pos){
         return new BVector3(pos);
+    }
+
+    public BVector3 newVector3(BVector3 vec){
+        return new BVector3(vec);
+    }
+
+    public BVector3 getFaceDirection(Location location,double length){
+        return newVector3(location.getYaw() - 270,-location.getPitch(),length);
     }
 }
