@@ -10,10 +10,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @Getter
-public class PluginMain extends PluginBase {
+public class CustomParticlePlugin extends PluginBase {
 
     @Getter
-    private static PluginMain instance;
+    private static CustomParticlePlugin instance;
     private CustomParticlePool customParticlePool;
     private Path particleFilePath;
 

@@ -1,6 +1,6 @@
 package cn.cookiestudio.customparticle.customparticle;
 
-import cn.cookiestudio.customparticle.PluginMain;
+import cn.cookiestudio.customparticle.CustomParticlePlugin;
 import cn.nukkit.Server;
 import cn.nukkit.level.ParticleEffect;
 import cn.nukkit.level.Position;
@@ -11,7 +11,7 @@ import java.util.function.BiFunction;
 
 public abstract class CustomParticle implements BiFunction<Long,Position, Map<ParticleEffect,List<Position>>> {
     public void play(Position pos,boolean follow){
-        Server.getInstance().getScheduler().scheduleRepeatingTask(PluginMain.getInstance(),new ParticlePlayTask(pos,follow),1);
+        Server.getInstance().getScheduler().scheduleRepeatingTask(CustomParticlePlugin.getInstance(),new ParticlePlayTask(pos,follow),1);
     }
 
     public class ParticlePlayTask extends PluginTask {
@@ -23,7 +23,7 @@ public abstract class CustomParticle implements BiFunction<Long,Position, Map<Pa
         private long tick = 1;
 
         public ParticlePlayTask(Position pos,boolean follow) {
-            super(PluginMain.getInstance());
+            super(CustomParticlePlugin.getInstance());
             this.pos = pos;
             this.startPos = pos.clone();
             this.follow = follow;

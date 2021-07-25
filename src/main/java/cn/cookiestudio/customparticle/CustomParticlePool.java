@@ -19,10 +19,18 @@ public class CustomParticlePool {
         return customParticlePool.remove(identifier);
     }
 
+    public CustomParticle remove(String str){
+        return remove(Identifier.fromString(str));
+    }
+
     public CustomParticle get(Identifier identifier){
         if (!customParticlePool.containsKey(identifier))
             throw new RuntimeException("particle name " + identifier + " not found!");
         return customParticlePool.get(identifier);
+    }
+
+    public CustomParticle get(String str){
+        return get(Identifier.fromString(str));
     }
 
     public CustomParticle getIfExist(Identifier identifier){

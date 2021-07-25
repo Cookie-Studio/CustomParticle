@@ -1,6 +1,6 @@
 package cn.cookiestudio.customparticle.customparticle;
 
-import cn.cookiestudio.customparticle.PluginMain;
+import cn.cookiestudio.customparticle.CustomParticlePlugin;
 import cn.cookiestudio.customparticle.math.BVector3;
 import cn.cookiestudio.customparticle.math.MathUtil;
 import cn.nukkit.level.ParticleEffect;
@@ -26,7 +26,7 @@ public class JavaScriptCustomParticle extends CustomParticle{
     public JavaScriptCustomParticle(Path scriptPath){
         this.scriptPath = scriptPath;
         NashornScriptEngineFactory scriptEngineFactory = new NashornScriptEngineFactory();
-        scriptEngine = (NashornScriptEngine) scriptEngineFactory.getScriptEngine(new String[]{"-doe"},PluginMain.getInstance().getClass().getClassLoader(),str -> true);
+        scriptEngine = (NashornScriptEngine) scriptEngineFactory.getScriptEngine(new String[]{"-doe"}, CustomParticlePlugin.getInstance().getClass().getClassLoader(), str -> true);
         scriptEngine.put("effect", ParticleEffect.values());//todo: support custom particle
         scriptEngine.put("particle",this);
         try {
