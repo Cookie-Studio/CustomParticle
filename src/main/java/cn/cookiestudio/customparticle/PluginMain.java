@@ -35,9 +35,6 @@ public class PluginMain extends PluginBase {
         this.getLogger().info("§aThis plugin is free,if you get this by money,you may be cheated!");
         this.getLogger().info("§aCookie-Studio QQ Group:107533634");
         this.getLogger().info("§f============================================================");
-
-        //debug
-        Server.getInstance().getScheduler().scheduleRepeatingTask(this,() -> Server.getInstance().getOnlinePlayers().values().forEach(p -> Server.getInstance().getOnlinePlayers().values().forEach(pp -> pp.sendActionBar("Pitch: " + p.getPitch() + ",Raw: " + p.getYaw()))),1);
     }
 
     public void reloadParticle(){
