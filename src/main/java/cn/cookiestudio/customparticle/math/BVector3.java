@@ -65,17 +65,17 @@ public class BVector3{
     }
 
     private void updatePos(){
-        double y = MathUtil.getInstance().sin(yAxisAngle) * length;
-        double projectEdge = MathUtil.getInstance().cos(yAxisAngle) * length;
-        double x = MathUtil.getInstance().cos(xzAxisAngle) * projectEdge;
-        double z = MathUtil.getInstance().sin(xzAxisAngle) * projectEdge;
+        double y = MathUtil.sin(yAxisAngle) * length;
+        double projectEdge = MathUtil.cos(yAxisAngle) * length;
+        double x = MathUtil.cos(xzAxisAngle) * projectEdge;
+        double z = MathUtil.sin(xzAxisAngle) * projectEdge;
         this.pos = new Vector3(x,y,z);
     }
 
     private void updateAngle(){
-        this.xzAxisAngle = MathUtil.getInstance().atan(pos.z / pos.x);
+        this.xzAxisAngle = MathUtil.atan(pos.z / pos.x);
         double projectEdge = Math.sqrt(Math.pow(pos.x,2) + Math.pow(pos.z,2));
-        this.yAxisAngle = MathUtil.getInstance().atan(pos.y / projectEdge);
+        this.yAxisAngle = MathUtil.atan(pos.y / projectEdge);
         this.length = Math.sqrt(Math.pow(projectEdge,2) + Math.pow(pos.y,2));
     }
 
