@@ -41,10 +41,10 @@ public class JavaScriptCustomParticle extends CustomParticle{
     }
 
     @Override
-    public Map<ParticleEffect,List<Position>> apply(Long tick, Position pos) {
-        Map<ParticleEffect,List<Position>> returnValue = null;
+    public Map<String,List<Position>> apply(Long tick, Position pos) {
+        Map<String,List<Position>> returnValue = null;
         try {
-            returnValue = (Map<ParticleEffect,List<Position>>) scriptEngine.invokeFunction("apply", tick, pos);
+            returnValue = (Map<String,List<Position>>) scriptEngine.invokeFunction("apply", tick, pos);
         }catch(Exception e){
             throw new RuntimeException("catch an exception when running script " + scriptPath,e);
         }
