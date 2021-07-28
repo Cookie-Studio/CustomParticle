@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 //a class storage all of the custom particle
 @Getter
-public class CustomParticlePool {
+public class CustomParticlePool{
 
     private HashMap<Identifier, CustomParticle> customParticlePool = new HashMap<>();
 
@@ -26,7 +26,12 @@ public class CustomParticlePool {
     public CustomParticle get(Identifier identifier){
         if (!customParticlePool.containsKey(identifier))
             throw new RuntimeException("particle name " + identifier + " not found!");
-        return customParticlePool.get(identifier);
+        try {
+            return (CustomParticle) customParticlePool.get(identifier).clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public CustomParticle get(String str){

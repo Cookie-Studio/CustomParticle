@@ -50,4 +50,9 @@ public class JavaScriptCustomParticle extends CustomParticle{
         }
         return returnValue;
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new JavaScriptCustomParticle(scriptPath);
+    }
 }

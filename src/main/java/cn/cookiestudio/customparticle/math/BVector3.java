@@ -31,7 +31,7 @@ public class BVector3{
     }
 
     public BVector3 extend(double length){
-        this.length = length;
+        this.length += length;
         updatePos();
         return this;
     }

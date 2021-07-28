@@ -3,14 +3,13 @@ package cn.cookiestudio.customparticle.customparticle;
 import cn.cookiestudio.customparticle.CustomParticlePlugin;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import cn.nukkit.level.ParticleEffect;
 import cn.nukkit.level.Position;
 import cn.nukkit.scheduler.PluginTask;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 
-public abstract class CustomParticle implements BiFunction<Long,Position, Map<String,List<Position>>> {
+public abstract class CustomParticle implements BiFunction<Long,Position, Map<String,List<Position>>> , Cloneable{
     public void play(Position pos,boolean follow){
         Server.getInstance().getScheduler().scheduleRepeatingTask(CustomParticlePlugin.getInstance(),new ParticlePlayTask(pos,follow),1);
     }
@@ -48,5 +47,10 @@ public abstract class CustomParticle implements BiFunction<Long,Position, Map<St
                 this.cancel();
             }
         }
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException{
+        throw new CloneNotSupportedException("class " + this.getClass().getName() + "haven't re-write clone() method,this is a bug,please send feedback to developer");
     }
 }
