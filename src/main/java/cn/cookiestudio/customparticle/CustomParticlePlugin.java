@@ -15,12 +15,14 @@ public class CustomParticlePlugin extends PluginBase {
     @Getter
     private static CustomParticlePlugin instance;
     private CustomParticlePool customParticlePool;
+    private ParticleSender particleSender;
     private Path particleFilePath;
 
     @Override
     public void onEnable() {
         instance = this;
         customParticlePool = new CustomParticlePool();
+        particleSender = new ParticleSender();
         particleFilePath = this.getDataFolder().toPath().resolve("particle");
         try {
             if(!Files.exists(particleFilePath))

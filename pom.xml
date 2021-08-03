@@ -6,13 +6,26 @@
 
     <groupId>cn.cookiestudio</groupId>
     <artifactId>CustomParticle</artifactId>
-    <version>0.9.9-SHAPSHOT</version>
+    <version>1.0.0-SHAPSHOT</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <jackson.version>2.12.3</jackson.version>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>ck</name>
+            <url>http://nz.ipyvps.com:1111/repository/cookie-studio/</url>
+        </repository>
+        <snapshotRepository>
+            <id>shapshots</id>
+            <name>ck</name>
+            <url>http://nz.ipyvps.com:1111/repository/cookie-studio/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <repositories>
         <repository>
@@ -76,6 +89,13 @@
             <artifactId>jackson-dataformat-properties</artifactId>
             <version>${jackson.version}</version>
             <scope>compile</scope>
+        </dependency>
+
+        <!--    Easy4Form   -->
+        <dependency>
+            <groupId>cn.cookiestudio</groupId>
+            <artifactId>Easy4Form</artifactId>
+            <version>1.0.3</version>
         </dependency>
     </dependencies>
 

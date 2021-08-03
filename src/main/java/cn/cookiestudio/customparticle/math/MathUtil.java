@@ -37,19 +37,7 @@ public class MathUtil {
         return (Math.abs(a) > Math.abs(b)) ? a : b;
     }
 
-    public static BVector3 newVector3(double xzAxisAngle, double yAxisAngle, double length){
-        return new BVector3(xzAxisAngle,yAxisAngle,length);
-    }
-
-    public static BVector3 newVector3(Vector3 pos){
-        return new BVector3(pos);
-    }
-
-    public static BVector3 newVector3(BVector3 vec){
-        return new BVector3(vec);
-    }
-
     public static BVector3 getFaceDirection(Location location,double length){
-        return newVector3(location.getYaw() - 270,-location.getPitch(),length);
+        return new BVector3(location.getYaw() - 270,-location.getPitch(),length);
     }
 }

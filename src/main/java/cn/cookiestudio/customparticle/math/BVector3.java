@@ -1,5 +1,7 @@
 package cn.cookiestudio.customparticle.math;
 
+import cn.nukkit.Server;
+import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
 import lombok.Getter;
@@ -43,7 +45,7 @@ public class BVector3{
     }
 
     public BVector3 addAngle(double xzAxisAngle,double yAxisAngle){
-        convertAngle(xzAxisAngle,yAxisAngle);
+        convertAngle(this.xzAxisAngle + xzAxisAngle,this.yAxisAngle + yAxisAngle);
         updatePos();
         return this;
     }

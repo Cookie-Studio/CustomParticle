@@ -26,12 +26,7 @@ public class CustomParticlePool{
     public CustomParticle get(Identifier identifier){
         if (!customParticlePool.containsKey(identifier))
             throw new RuntimeException("particle name " + identifier + " not found!");
-        try {
-            return (CustomParticle) customParticlePool.get(identifier).clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return (CustomParticle) customParticlePool.get(identifier);
     }
 
     public CustomParticle get(String str){
