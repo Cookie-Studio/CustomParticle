@@ -8,7 +8,6 @@ import cn.nukkit.Server;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.ConsoleCommandSender;
-import cn.nukkit.form.element.ElementSlider;
 import cn.nukkit.form.element.ElementStepSlider;
 import cn.nukkit.form.response.FormResponseCustom;
 import cn.nukkit.level.Position;
