@@ -11,10 +11,8 @@ import lombok.Getter;
 import lombok.Setter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -27,7 +25,7 @@ public class JavaScriptCustomParticle extends CustomParticle{
         this.scriptPath = scriptPath;
         NashornScriptEngineFactory scriptEngineFactory = new NashornScriptEngineFactory();
         scriptEngine = (NashornScriptEngine) scriptEngineFactory.getScriptEngine(new String[]{"-doe"}, CustomParticlePlugin.getInstance().getClass().getClassLoader(), str -> true);
-        scriptEngine.put("effect", ParticleEffect.values());//todo: support custom particle
+        scriptEngine.put("effect", Arrays.stream(ParticleEffect.values()).map(effect -> effect.getIdentifier()).collect(Collectors.toList()).toArray());//todo: support custom particle
         scriptEngine.put("particle",this);
         try {
             scriptEngine.eval("var BVector3 = Java.type('" + BVector3.class.getName() + "');");
