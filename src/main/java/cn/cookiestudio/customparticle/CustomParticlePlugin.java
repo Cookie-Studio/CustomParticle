@@ -50,7 +50,7 @@ public class CustomParticlePlugin extends PluginBase {
         try {
             Files.newDirectoryStream(particleFilePath,"*.js").forEach(script -> {
                 String[] str = script.toFile().getName().split("\\.");
-                customParticlePool.register(Identifier.from(str[0],str[1]),new JavaScriptCustomParticle(script));
+                new JavaScriptCustomParticle(script,Identifier.from(str[0],str[1]));
                 this.getLogger().info("§aSuccessfully loaded javascript particle file: " + script);
             });
         } catch (Exception e) {

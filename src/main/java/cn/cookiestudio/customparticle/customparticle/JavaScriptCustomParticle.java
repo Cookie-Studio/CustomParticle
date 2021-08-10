@@ -3,6 +3,7 @@ package cn.cookiestudio.customparticle.customparticle;
 import cn.cookiestudio.customparticle.CustomParticlePlugin;
 import cn.cookiestudio.customparticle.math.BVector3;
 import cn.cookiestudio.customparticle.math.MathUtil;
+import cn.cookiestudio.customparticle.util.Identifier;
 import cn.nukkit.level.ParticleEffect;
 import cn.nukkit.level.Position;
 import jdk.nashorn.api.scripting.NashornScriptEngine;
@@ -21,7 +22,8 @@ public class JavaScriptCustomParticle extends CustomParticle{
     private Path scriptPath;
     private NashornScriptEngine scriptEngine;
 
-    public JavaScriptCustomParticle(Path scriptPath){
+    public JavaScriptCustomParticle(Path scriptPath, Identifier identifier){
+        super(identifier);
         this.scriptPath = scriptPath;
         NashornScriptEngineFactory scriptEngineFactory = new NashornScriptEngineFactory();
         scriptEngine = (NashornScriptEngine) scriptEngineFactory.getScriptEngine(new String[]{"-doe"}, CustomParticlePlugin.getInstance().getClass().getClassLoader(), str -> true);

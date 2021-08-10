@@ -1,15 +1,26 @@
 package cn.cookiestudio.customparticle.customparticle;
 
 import cn.cookiestudio.customparticle.CustomParticlePlugin;
+import cn.cookiestudio.customparticle.util.Identifier;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.level.Position;
 import cn.nukkit.scheduler.PluginTask;
+import lombok.Getter;
+
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 
+@Getter
 public abstract class CustomParticle implements BiFunction<Long,Position, Map<String,List<Position>>>{
+
+    private Identifier identifier;
+
+    public CustomParticle(Identifier identifier){
+        this.identifier = identifier;
+    }
+
     public void play(Position pos,boolean follow){
         Server.getInstance().getScheduler().scheduleRepeatingTask(CustomParticlePlugin.getInstance(),new ParticlePlayTask(pos,follow),1);
     }
