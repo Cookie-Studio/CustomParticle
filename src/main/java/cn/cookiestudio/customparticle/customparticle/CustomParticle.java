@@ -19,6 +19,7 @@ public abstract class CustomParticle implements BiFunction<Long,Position, Map<St
 
     public CustomParticle(Identifier identifier){
         this.identifier = identifier;
+        CustomParticlePlugin.getInstance().getCustomParticlePool().register(identifier,this);
     }
 
     public void play(Position pos,boolean follow){
