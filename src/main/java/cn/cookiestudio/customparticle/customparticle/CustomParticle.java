@@ -45,14 +45,14 @@ public abstract class CustomParticle implements BiFunction<Long,Position, Map<St
         public void onRun(int i) {
             if (follow){
                 if ((particlePos = apply(tick,pos)) != null){
-                    particlePos.forEach((effect,list) -> list.forEach(pos -> CustomParticlePlugin.getInstance().getParticleSender().sendParticle(effect,pos)));
+                    particlePos.forEach((effect,list) -> list.stream().parallel().forEach(pos -> CustomParticlePlugin.getInstance().getParticleSender().sendParticle(effect,pos)));
                     tick++;
                     return;
                 }
                 this.cancel();
             }else{
                 if ((particlePos = apply(tick,startPos)) != null){
-                    particlePos.forEach((effect,list) -> list.forEach(pos -> CustomParticlePlugin.getInstance().getParticleSender().sendParticle(effect,pos)));
+                    particlePos.forEach((effect,list) -> list.stream().parallel().forEach(pos -> CustomParticlePlugin.getInstance().getParticleSender().sendParticle(effect,pos)));
                     tick++;
                     return;
                 }

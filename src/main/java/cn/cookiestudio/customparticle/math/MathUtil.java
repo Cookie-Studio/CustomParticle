@@ -1,5 +1,6 @@
 package cn.cookiestudio.customparticle.math;
 
+import cn.nukkit.Player;
 import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
 

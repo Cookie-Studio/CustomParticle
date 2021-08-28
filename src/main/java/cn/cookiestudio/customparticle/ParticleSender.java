@@ -6,10 +6,13 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
+import cn.nukkit.level.Level;
 import cn.nukkit.level.Position;
 import cn.nukkit.network.protocol.SpawnParticleEffectPacket;
 import cn.nukkit.utils.Config;
 import lombok.Getter;
+
+import java.util.Arrays;
 import java.util.HashMap;
 
 @Getter
@@ -41,17 +44,23 @@ public class ParticleSender {
     }
 
     public void sendParticle(String identifier, Position pos, Player[] players){
-        for (Player player : players){
+        Arrays.stream(players).forEach(player -> {
+            if (!player.isOnline())
+                return;
             double factor = setting.getDouble(player.getName());
             if (sendCount.get(player) % factor < 1){
                 SpawnParticleEffectPacket packet = new SpawnParticleEffectPacket();
                 packet.identifier = identifier;
                 packet.dimensionId = pos.getLevel().getDimension();
                 packet.position = pos.asVector3f();
-                player.dataPacket(packet);
+                try {
+                    player.dataPacket(packet);
+                }catch (Throwable t){
+
+                }
             }
             addSendCount(player);
-        }
+        });
     }
 
     public void reloadSettingFile(){

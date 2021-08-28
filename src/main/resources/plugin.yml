@@ -1,5 +1,5 @@
 name: CustomParticle
 main: cn.cookiestudio.customparticle.CustomParticlePlugin
-version: "1.0.1"
+version: "1.0.3"
 author: daoge_cmd
 api: ["1.0.11"]

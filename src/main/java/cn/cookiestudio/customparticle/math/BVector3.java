@@ -1,7 +1,5 @@
 package cn.cookiestudio.customparticle.math;
 
-import cn.nukkit.Server;
-import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
 import lombok.Getter;
