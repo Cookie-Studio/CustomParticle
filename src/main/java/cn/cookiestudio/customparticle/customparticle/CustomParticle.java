@@ -23,7 +23,11 @@ public abstract class CustomParticle implements BiFunction<Long,Position, Map<St
     }
 
     public void play(Position pos,boolean follow){
-        Server.getInstance().getScheduler().scheduleRepeatingTask(CustomParticlePlugin.getInstance(),new ParticlePlayTask(pos,follow),1);
+        play(pos,follow,Server.getInstance().getOnlinePlayers().values().toArray(new Player[0]));
+    }
+
+    public void play(Position pos,boolean follow,Player[] players){
+        Server.getInstance().getScheduler().scheduleRepeatingTask(CustomParticlePlugin.getInstance(),new ParticlePlayTask(pos,follow,players),1);
     }
 
     public class ParticlePlayTask extends PluginTask {
@@ -32,27 +36,29 @@ public abstract class CustomParticle implements BiFunction<Long,Position, Map<St
         private Map<String,List<Position>> particlePos;
         private Position startPos;
         private boolean follow;
+        private Player[] players;
         private long tick = 1;
 
-        public ParticlePlayTask(Position pos,boolean follow) {
+        public ParticlePlayTask(Position pos,boolean follow,Player[] players) {
             super(CustomParticlePlugin.getInstance());
             this.pos = pos;
             this.startPos = pos.clone();
             this.follow = follow;
+            this.players = players;
         }
 
         @Override
         public void onRun(int i) {
             if (follow){
                 if ((particlePos = apply(tick,pos)) != null){
-                    particlePos.forEach((effect,list) -> list.stream().parallel().forEach(pos -> CustomParticlePlugin.getInstance().getParticleSender().sendParticle(effect,pos)));
+                    particlePos.forEach((effect,list) -> list.stream().parallel().forEach(pos -> CustomParticlePlugin.getInstance().getParticleSender().sendParticle(effect,pos,players)));
                     tick++;
                     return;
                 }
                 this.cancel();
             }else{
                 if ((particlePos = apply(tick,startPos)) != null){
-                    particlePos.forEach((effect,list) -> list.stream().parallel().forEach(pos -> CustomParticlePlugin.getInstance().getParticleSender().sendParticle(effect,pos)));
+                    particlePos.forEach((effect,list) -> list.stream().parallel().forEach(pos -> CustomParticlePlugin.getInstance().getParticleSender().sendParticle(effect,pos,players)));
                     tick++;
                     return;
                 }

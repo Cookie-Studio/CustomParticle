@@ -27,7 +27,7 @@ public class JavaScriptCustomParticle extends CustomParticle{
         this.scriptPath = scriptPath;
         NashornScriptEngineFactory scriptEngineFactory = new NashornScriptEngineFactory();
         scriptEngine = (NashornScriptEngine) scriptEngineFactory.getScriptEngine(new String[]{"-doe"}, CustomParticlePlugin.getInstance().getClass().getClassLoader(), str -> true);
-        scriptEngine.put("effect", Arrays.stream(ParticleEffect.values()).map(effect -> effect.getIdentifier()).collect(Collectors.toList()).toArray());//todo: support custom particle
+        scriptEngine.put("effect", Arrays.stream(ParticleEffect.values()).map(effect -> effect.getIdentifier()).collect(Collectors.toList()).toArray());
         scriptEngine.put("particle",this);
         try {
             scriptEngine.eval("var BVector3 = Java.type('" + BVector3.class.getName() + "');");
